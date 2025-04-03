@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Social Media Sentiment Analysis</h1>
+  <app-search (searchEvent)="onSearch($event)"></app-search>
+  <app-charts [tweets]="tweets"></app-charts>
+
+  <!-- Loading bar -->
+  <div *ngIf="loading" class="loading-bar">
+    Loading tweets...
+  </div>
+
+  <!-- Tweet list -->
+  <div class="tweet-list" *ngIf="!loading">
+    <div *ngFor="let tweet of tweets" class="tweet">
+      <h4>{{ tweet.user }}</h4>
+      <p>
+        {{ tweet.text | slice:0:200 }}
+        <span *ngIf="tweet.text.length > 200 && !tweet.showFull">...</span>
+        <span *ngIf="tweet.showFull">{{ tweet.text | slice:100 }}</span>
+        <button class="load-more-btn" *ngIf="tweet.text.length > 100" (click)="tweet.showFull = !tweet.showFull">
+          {{ tweet.showFull ? 'Show Less' : 'Show More' }}
+        </button>
+      </p>
+      <small>{{ tweet.date }} - {{ tweet.sentiment }}</small>
+    </div>
+  </div>
+</div>
