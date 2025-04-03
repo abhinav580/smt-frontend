@@ -8,7 +8,7 @@ import { Tweet } from './tweet.model';
 })
 export class TweetService {
   // Adjust the API URL if needed.
-  private apiUrl = 'http://localhost:8000/api/tweets/';
+  private apiUrl = 'https://abhinav580.pythonanywhere.com/api/tweets/';
 
   constructor(private http: HttpClient) { }
 
